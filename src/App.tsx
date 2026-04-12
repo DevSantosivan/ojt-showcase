@@ -3,8 +3,15 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import Index from "./pages/Index.tsx";
-import NotFound from "./pages/NotFound.tsx";
+import { Layout } from "@/components/Layout";
+import QuickOverview from "@/pages/QuickOverview";
+import Showcase from "@/pages/Showcase";
+import { TitlePage, Acknowledgement, TraineePrayer, PersonalPhilosophy, CareerPlan } from "@/pages/contents/ContentPages";
+import Chapter1 from "@/pages/chapters/Chapter1";
+import { Chapter2, Chapter3, Chapter4 } from "@/pages/chapters/ChapterPages";
+import { AppendixA, AppendixB, AppendixC, AppendixD } from "@/pages/appendices/AppendixPages";
+import Resume from "@/pages/Resume";
+import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
 
@@ -15,8 +22,24 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route element={<Layout />}>
+            <Route path="/" element={<QuickOverview />} />
+            <Route path="/showcase" element={<Showcase />} />
+            <Route path="/contents/title-page" element={<TitlePage />} />
+            <Route path="/contents/acknowledgement" element={<Acknowledgement />} />
+            <Route path="/contents/trainee-prayer" element={<TraineePrayer />} />
+            <Route path="/contents/personal-philosophy" element={<PersonalPhilosophy />} />
+            <Route path="/contents/career-plan" element={<CareerPlan />} />
+            <Route path="/chapters/1" element={<Chapter1 />} />
+            <Route path="/chapters/2" element={<Chapter2 />} />
+            <Route path="/chapters/3" element={<Chapter3 />} />
+            <Route path="/chapters/4" element={<Chapter4 />} />
+            <Route path="/appendices/a" element={<AppendixA />} />
+            <Route path="/appendices/b" element={<AppendixB />} />
+            <Route path="/appendices/c" element={<AppendixC />} />
+            <Route path="/appendices/d" element={<AppendixD />} />
+            <Route path="/resume" element={<Resume />} />
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
