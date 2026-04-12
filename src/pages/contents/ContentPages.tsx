@@ -1,3 +1,5 @@
+import { FadeInSection, StaggerContainer, StaggerItem } from "@/components/Animations";
+
 interface ContentPageProps {
   title: string;
   children?: React.ReactNode;
@@ -6,12 +8,16 @@ interface ContentPageProps {
 function ContentPage({ title, children }: ContentPageProps) {
   return (
     <div className="space-y-6">
-      <h1 className="font-heading text-2xl font-bold tracking-tight">{title}</h1>
-      {children || (
-        <div className="card-clean rounded-lg border border-border bg-card p-6 text-center">
-          <p className="text-muted-foreground text-sm">Content will be added here.</p>
-        </div>
-      )}
+      <FadeInSection>
+        <h1 className="font-heading text-2xl font-bold tracking-tight">{title}</h1>
+      </FadeInSection>
+      <FadeInSection delay={0.1}>
+        {children || (
+          <div className="card-clean rounded-lg border border-border bg-card p-6 text-center">
+            <p className="text-muted-foreground text-sm">Content will be added here.</p>
+          </div>
+        )}
+      </FadeInSection>
     </div>
   );
 }
@@ -79,18 +85,20 @@ export function PersonalPhilosophy() {
 export function CareerPlan() {
   return (
     <ContentPage title="Career Plan">
-      <div className="space-y-4">
+      <StaggerContainer className="space-y-4">
         {[
           { period: "Short-term (1-2 years)", goal: "Complete my degree and gain additional certifications in web development and IT support. Seek entry-level positions in IT." },
           { period: "Mid-term (3-5 years)", goal: "Advance to a mid-level developer or systems administrator role. Continue professional development through workshops and training." },
           { period: "Long-term (5+ years)", goal: "Become a senior IT professional or team lead. Contribute to the community by mentoring aspiring IT professionals." },
         ].map((item) => (
-          <div key={item.period} className="card-clean rounded-lg border border-border bg-card p-4">
-            <h3 className="font-heading text-sm font-semibold mb-1">{item.period}</h3>
-            <p className="text-muted-foreground text-xs leading-relaxed">{item.goal}</p>
-          </div>
+          <StaggerItem key={item.period}>
+            <div className="card-clean rounded-lg border border-border bg-card p-4">
+              <h3 className="font-heading text-sm font-semibold mb-1">{item.period}</h3>
+              <p className="text-muted-foreground text-xs leading-relaxed">{item.goal}</p>
+            </div>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerContainer>
     </ContentPage>
   );
 }

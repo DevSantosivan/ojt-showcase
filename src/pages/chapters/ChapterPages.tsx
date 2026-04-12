@@ -1,3 +1,5 @@
+import { FadeInSection, StaggerContainer, StaggerItem } from "@/components/Animations";
+
 interface ChapterPageProps {
   number: number;
   title: string;
@@ -7,14 +9,20 @@ interface ChapterPageProps {
 function ChapterPage({ number, title, description }: ChapterPageProps) {
   return (
     <div className="space-y-6">
-      <div>
-        <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Chapter {number}</p>
-        <h1 className="font-heading text-2xl font-bold tracking-tight">{title}</h1>
-      </div>
-      <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
-      <div className="card-clean rounded-lg border border-border bg-card p-6 text-center">
-        <p className="text-muted-foreground text-sm">Content for this chapter will be added here.</p>
-      </div>
+      <FadeInSection>
+        <div>
+          <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Chapter {number}</p>
+          <h1 className="font-heading text-2xl font-bold tracking-tight">{title}</h1>
+        </div>
+      </FadeInSection>
+      <FadeInSection delay={0.1}>
+        <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
+      </FadeInSection>
+      <FadeInSection delay={0.2}>
+        <div className="card-clean rounded-lg border border-border bg-card p-6 text-center">
+          <p className="text-muted-foreground text-sm">Content for this chapter will be added here.</p>
+        </div>
+      </FadeInSection>
     </div>
   );
 }
