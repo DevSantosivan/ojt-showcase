@@ -6,10 +6,24 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Layout } from "@/components/Layout";
 import QuickOverview from "@/pages/QuickOverview";
 import Showcase from "@/pages/Showcase";
-import { TitlePage, Acknowledgement, TraineePrayer, PersonalPhilosophy, CareerPlan } from "@/pages/contents/ContentPages";
+import {
+  TitlePage,
+  Acknowledgement,
+  TraineePrayer,
+  PersonalPhilosophy,
+  CareerPlan,
+} from "@/pages/contents/ContentPages";
 import Chapter1 from "@/pages/chapters/Chapter1";
-import { Chapter2, Chapter3, Chapter4 } from "@/pages/chapters/ChapterPages";
-import { AppendixA, AppendixB, AppendixC, AppendixD } from "@/pages/appendices/AppendixPages";
+
+import { Chapter2 } from "@/pages/chapters/Chapter2";
+import { Chapter3 } from "@/pages/chapters/Chapter3";
+import { Chapter4 } from "@/pages/chapters/Chapter4";
+import {
+  AppendixA,
+  AppendixB,
+  AppendixC,
+  AppendixD,
+} from "@/pages/appendices/AppendixPages";
 import Resume from "@/pages/Resume";
 import NotFound from "@/pages/NotFound";
 
@@ -26,9 +40,18 @@ const App = () => (
             <Route path="/" element={<QuickOverview />} />
             <Route path="/showcase" element={<Showcase />} />
             <Route path="/contents/title-page" element={<TitlePage />} />
-            <Route path="/contents/acknowledgement" element={<Acknowledgement />} />
-            <Route path="/contents/trainee-prayer" element={<TraineePrayer />} />
-            <Route path="/contents/personal-philosophy" element={<PersonalPhilosophy />} />
+            <Route
+              path="/contents/acknowledgement"
+              element={<Acknowledgement />}
+            />
+            <Route
+              path="/contents/trainee-prayer"
+              element={<TraineePrayer />}
+            />
+            <Route
+              path="/contents/personal-philosophy"
+              element={<PersonalPhilosophy />}
+            />
             <Route path="/contents/career-plan" element={<CareerPlan />} />
             <Route path="/chapters/1" element={<Chapter1 />} />
             <Route path="/chapters/2" element={<Chapter2 />} />

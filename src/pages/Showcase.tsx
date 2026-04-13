@@ -1,133 +1,245 @@
-import { FadeInSection, StaggerContainer, StaggerItem } from "@/components/Animations";
-import { Globe, Smartphone, Award, Palette } from "lucide-react";
+import { useState } from "react";
+import {
+  FadeInSection,
+  StaggerContainer,
+  StaggerItem,
+} from "@/components/Animations";
+import {
+  Globe,
+  Smartphone,
+  Award,
+  Palette,
+  Code2,
+  Database,
+  GitBranch,
+  Server,
+} from "lucide-react";
+
+/* OJT IMAGES */
+import ojt1 from "@/assets/OJT1.jpg";
+import ojt2 from "@/assets/OJT2.jpg";
+import ojt3 from "@/assets/OJT3.jpg";
+import ojt4 from "@/assets/OJT4.jpg";
 
 interface TechItem {
   name: string;
   years: string;
+  icon: React.ReactNode;
+  color: string;
 }
 
+interface CertificateItem {
+  title: string;
+  image: string;
+  year: string;
+}
+
+/* ICON STYLE */
+const iconStyle = (color: string) => ({
+  color,
+});
+
+/* WEB TECH */
 const webTech: TechItem[] = [
-  { name: "Angular", years: "1 year" },
-  { name: "React", years: "1 year" },
-  { name: "Tailwind CSS", years: "1 year" },
-  { name: "JavaScript", years: "2 years" },
-  { name: "Bootstrap", years: "2 years" },
-  { name: "PHP", years: "1 year" },
-  { name: "Node.js", years: "1 year" },
-  { name: "MySQL", years: "1 year" },
-  { name: "Supabase", years: "1 year" },
-  { name: "Firebase", years: "1 year" },
-  { name: "Git", years: "2 years" },
-  { name: "GitHub", years: "2 years" },
-  { name: "Postman", years: "1 year" },
+  { name: "Angular", years: "1 year", icon: <Code2 />, color: "#DD0031" },
+  { name: "React", years: "1 year", icon: <Code2 />, color: "#61DAFB" },
+  {
+    name: "Tailwind CSS",
+    years: "1 year",
+    icon: <Palette />,
+    color: "#38BDF8",
+  },
+  { name: "JavaScript", years: "2 years", icon: <Code2 />, color: "#F7DF1E" },
+  { name: "Bootstrap", years: "2 years", icon: <Palette />, color: "#7952B3" },
+  { name: "PHP", years: "1 year", icon: <Server />, color: "#777BB4" },
+  { name: "Node.js", years: "1 year", icon: <Server />, color: "#68A063" },
+  { name: "MySQL", years: "1 year", icon: <Database />, color: "#00758F" },
+  { name: "Firebase", years: "1 year", icon: <Database />, color: "#FFCA28" },
+  { name: "Supabase", years: "1 year", icon: <Database />, color: "#3ECF8E" },
+  { name: "Git", years: "2 years", icon: <GitBranch />, color: "#F1502F" },
+  { name: "GitHub", years: "2 years", icon: <GitBranch />, color: "#ffffff" },
 ];
 
+/* MOBILE TECH */
 const mobileTech: TechItem[] = [
-  { name: "Flutter", years: "1 year" },
-  { name: "Dart", years: "1 year" },
+  { name: "Flutter", years: "1 year", icon: <Smartphone />, color: "#02569B" },
+  { name: "Dart", years: "1 year", icon: <Smartphone />, color: "#0175C2" },
 ];
 
+/* DESIGN TOOLS */
 const designTools: TechItem[] = [
-  { name: "Canva", years: "2 years" },
-  { name: "Figma", years: "1 year" },
+  { name: "Canva", years: "2 years", icon: <Palette />, color: "#00C4CC" },
+  { name: "Figma", years: "1 year", icon: <Palette />, color: "#F24E1E" },
 ];
 
-const certificates = [
-  "Web Development Fundamentals",
-  "React & Angular Certification",
-  "Mobile App Development with Flutter",
-  "UI/UX Design Basics",
+/* CERTIFICATES */
+const certificates: CertificateItem[] = [
+  {
+    title: "Champion – IT Day Web Design Competition",
+    image: ojt1,
+    year: "2025",
+  },
+  {
+    title: "1st Place – IT Skills Competition (Team Entry)",
+    image: ojt2,
+    year: "2025",
+  },
+  {
+    title: "Participation Certificate – Technical Challenge",
+    image: ojt3,
+    year: "2025",
+  },
+  {
+    title: "Achievement Award – OJT Recognition",
+    image: ojt4,
+    year: "2025",
+  },
 ];
 
+/* TECH CARD */
 function TechCard({ item }: { item: TechItem }) {
   return (
-    <div className="card-clean rounded-lg border border-border bg-card p-3.5 flex items-center justify-between hover:border-primary/40 transition-colors">
-      <span className="text-sm font-medium">{item.name}</span>
-      <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">{item.years}</span>
+    <div className="flex items-center justify-between rounded-xl border border-border bg-card p-3 hover:border-primary/40 transition">
+      <div className="flex items-center gap-2">
+        <span style={iconStyle(item.color)}>{item.icon}</span>
+        <span className="text-sm font-medium">{item.name}</span>
+      </div>
+
+      <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
+        {item.years}
+      </span>
     </div>
   );
 }
 
-export default function Showcase() {
+/* CERT CARD */
+function CertificateCard({
+  cert,
+  onClick,
+}: {
+  cert: CertificateItem;
+  onClick: () => void;
+}) {
   return (
-    <div className="space-y-10">
+    <div
+      onClick={onClick}
+      className="cursor-pointer rounded-xl border border-border bg-card overflow-hidden hover:scale-[1.02] transition"
+    >
+      <img
+        src={cert.image}
+        className="h-44 w-full object-cover"
+        alt={cert.title}
+      />
+
+      <div className="p-3 space-y-1">
+        <div className="flex items-center gap-2">
+          <Award className="text-primary h-4 w-4" />
+          <span className="text-sm font-medium">{cert.title}</span>
+        </div>
+
+        <p className="text-xs text-muted-foreground">{cert.year}</p>
+      </div>
+    </div>
+  );
+}
+
+/* MAIN */
+export default function Showcase() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  return (
+    <div className="space-y-12">
+      {/* HEADER */}
       <FadeInSection>
-        <h1 className="font-heading text-2xl font-bold tracking-tight">Showcase</h1>
-        <p className="text-muted-foreground text-sm leading-relaxed mt-2">
-          My tech stack, tools, and certifications acquired throughout my academic journey and OJT internship.
+        <h1 className="text-2xl font-bold">Showcase</h1>
+        <p className="text-sm text-muted-foreground">
+          Tech stack, tools, and achievements from projects and competitions.
         </p>
       </FadeInSection>
 
-      {/* Web Tech Stack */}
-      <FadeInSection delay={0.05}>
-        <section className="space-y-4">
-          <h2 className="font-heading text-lg font-semibold flex items-center gap-2">
-            <Globe className="h-5 w-5 text-primary" />
-            Web Tech Stack
-          </h2>
-          <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-            {webTech.map((item) => (
-              <StaggerItem key={item.name}>
-                <TechCard item={item} />
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </section>
-      </FadeInSection>
+      {/* WEB */}
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold flex items-center gap-2">
+          <Globe className="text-primary" /> Web Development
+        </h2>
 
-      {/* Mobile Tech Stack */}
-      <FadeInSection delay={0.1}>
-        <section className="space-y-4">
-          <h2 className="font-heading text-lg font-semibold flex items-center gap-2">
-            <Smartphone className="h-5 w-5 text-primary" />
-            Mobile Tech Stack
-          </h2>
-          <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-            {mobileTech.map((item) => (
-              <StaggerItem key={item.name}>
-                <TechCard item={item} />
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </section>
-      </FadeInSection>
+        <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 gap-2">
+          {webTech.map((item) => (
+            <StaggerItem key={item.name}>
+              <TechCard item={item} />
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+      </section>
 
-      {/* Design Tools */}
-      <FadeInSection delay={0.15}>
-        <section className="space-y-4">
-          <h2 className="font-heading text-lg font-semibold flex items-center gap-2">
-            <Palette className="h-5 w-5 text-primary" />
-            Design Tools
-          </h2>
-          <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-            {designTools.map((item) => (
-              <StaggerItem key={item.name}>
-                <TechCard item={item} />
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </section>
-      </FadeInSection>
+      {/* MOBILE */}
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold flex items-center gap-2">
+          <Smartphone className="text-primary" /> Mobile Development
+        </h2>
 
-      {/* Certificates */}
-      <FadeInSection delay={0.2}>
-        <section className="space-y-4">
-          <h2 className="font-heading text-lg font-semibold flex items-center gap-2">
-            <Award className="h-5 w-5 text-primary" />
-            Certificates
-          </h2>
-          <StaggerContainer className="grid gap-2 sm:grid-cols-2">
-            {certificates.map((cert) => (
-              <StaggerItem key={cert}>
-                <div className="card-clean rounded-lg border border-border bg-card p-4 flex items-start gap-3 hover:border-primary/40 transition-colors">
-                  <Award className="h-4 w-4 text-primary mt-0.5 shrink-0" />
-                  <span className="text-sm">{cert}</span>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </section>
-      </FadeInSection>
+        <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 gap-2">
+          {mobileTech.map((item) => (
+            <StaggerItem key={item.name}>
+              <TechCard item={item} />
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+      </section>
+
+      {/* DESIGN */}
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold flex items-center gap-2">
+          <Palette className="text-primary" /> Design Tools
+        </h2>
+
+        <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 gap-2">
+          {designTools.map((item) => (
+            <StaggerItem key={item.name}>
+              <TechCard item={item} />
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+      </section>
+
+      {/* CERTIFICATES */}
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold flex items-center gap-2">
+          <Award className="text-primary" /> Achievements
+        </h2>
+
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {certificates.map((cert) => (
+            <StaggerItem key={cert.title}>
+              <div
+                onClick={() => setSelectedImage(cert.image)}
+                className="cursor-pointer"
+              >
+                <CertificateCard
+                  cert={cert}
+                  onClick={function (): void {
+                    throw new Error("Function not implemented.");
+                  }}
+                />
+              </div>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+      </section>
+
+      {/* IMAGE MODAL */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
+          onClick={() => setSelectedImage(null)}
+        >
+          <img
+            src={selectedImage}
+            className="max-h-[90%] max-w-[90%] rounded-lg shadow-lg"
+            alt="Preview"
+          />
+        </div>
+      )}
     </div>
   );
 }

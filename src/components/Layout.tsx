@@ -80,7 +80,7 @@ export function Layout() {
 
           {/* PAGE CONTENT */}
           <main className="flex-1 overflow-y-auto">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+            <div className="w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={location.pathname}
@@ -88,6 +88,7 @@ export function Layout() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
+                  className="w-full max-w-6xl mx-auto"
                 >
                   <Outlet />
                 </motion.div>

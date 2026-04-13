@@ -7,10 +7,8 @@ import {
   Paperclip,
   Github,
   File,
-  FileText,
-  GraduationCap,
-  Heart,
-  Target,
+  ArrowRight,
+  Building2,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -22,6 +20,7 @@ import {
 } from "@/components/Animations";
 
 import profileImg from "@/assets/profile-placeholder.jpg";
+import logo from "@/assets/ls-logo.png";
 
 /* OJT IMAGES */
 import ojt1 from "@/assets/OJT1.jpg";
@@ -32,9 +31,12 @@ import ojt4 from "@/assets/OJT4.jpg";
 /* CHAPTERS */
 const chapters = [
   { title: "Chapter 1 — Introduction", url: "/chapters/1" },
-  { title: "Chapter 2 — Practicum Experience", url: "/chapters/2" },
-  { title: "Chapter 3 — Assessment", url: "/chapters/3" },
-  { title: "Chapter 4 — Summary & Recommendations", url: "/chapters/4" },
+  { title: "Chapter 2 — Company Profile", url: "/chapters/2" },
+  { title: "Chapter 3 — Work Experience", url: "/chapters/3" },
+  {
+    title: "Chapter 4 — Assessment of the Practicum Program",
+    url: "/chapters/4",
+  },
 ];
 
 /* APPENDICES */
@@ -47,39 +49,19 @@ const appendices = [
 
 /* CONTENTS */
 const contents = [
-  { title: "Title Page", url: "/contents/title-page", icon: FileText },
-  { title: "Acknowledgement", url: "/contents/acknowledgement", icon: Heart },
-  {
-    title: "Student Trainee Prayer",
-    url: "/contents/trainee-prayer",
-    icon: BookOpen,
-  },
-  {
-    title: "Personal Philosophy",
-    url: "/contents/personal-philosophy",
-    icon: GraduationCap,
-  },
-  { title: "Career Plan", url: "/contents/career-plan", icon: Target },
+  { title: "Title Page", url: "/contents/title-page" },
+  { title: "Acknowledgement", url: "/contents/acknowledgement" },
+  { title: "Student Trainee Prayer", url: "/contents/trainee-prayer" },
+  { title: "Personal Philosophy", url: "/contents/personal-philosophy" },
+  { title: "Career Plan", url: "/contents/career-plan" },
 ];
 
 /* OJT EXPERIENCE */
 const ojtExperience = [
-  {
-    title: "Office Documentation Work",
-    image: ojt1,
-  },
-  {
-    title: "System Development Tasks",
-    image: ojt2,
-  },
-  {
-    title: "Team Collaboration & Meetings",
-    image: ojt3,
-  },
-  {
-    title: "Hands-on Technical Training",
-    image: ojt4,
-  },
+  { title: "Office Documentation Work", image: ojt1 },
+  { title: "System Development Tasks", image: ojt2 },
+  { title: "Team Collaboration & Meetings", image: ojt3 },
+  { title: "Hands-on Technical Training", image: ojt4 },
 ];
 
 export default function QuickOverview() {
@@ -103,35 +85,33 @@ export default function QuickOverview() {
                 Ivan Francisco Santos
               </h1>
 
-              <p className="text-muted-foreground mt-1">
+              <p className="text-muted-foreground mt-1 text-sm">
                 Bachelor of Science in Information Technology
               </p>
 
               <div className="flex flex-wrap gap-3 mt-4 justify-center sm:justify-start">
-                <Button className="gap-2" onClick={() => navigate("/resume")}>
-                  <FileDown className="h-4 w-4" />
-                  View Resume
+                <Button onClick={() => navigate("/resume")}>
+                  <FileDown className="h-4 w-4 mr-2" />
+                  Resume
                 </Button>
 
                 <Button
                   variant="outline"
-                  className="gap-2"
                   onClick={() =>
                     (window.location.href = "mailto:ivan.santos@email.com")
                   }
                 >
-                  <Mail className="h-4 w-4" />
-                  Email Me
+                  <Mail className="h-4 w-4 mr-2" />
+                  Email
                 </Button>
 
                 <Button
                   variant="outline"
-                  className="gap-2"
                   onClick={() =>
                     window.open("https://github.com/DevSantosivan", "_blank")
                   }
                 >
-                  <Github className="h-4 w-4" />
+                  <Github className="h-4 w-4 mr-2" />
                   GitHub
                 </Button>
               </div>
@@ -140,21 +120,63 @@ export default function QuickOverview() {
         </div>
       </ScaleIn>
 
-      {/* INTRODUCTION */}
+      {/* COMPANY */}
+      <FadeInSection delay={0.12}>
+        <section>
+          <h2 className="text-lg font-semibold mb-3 flex items-center gap-2">
+            <Building2 className="h-5 w-5 text-primary" />
+            Company
+          </h2>
+
+          {/* COMPANY CARD */}
+          <div className="card-clean border p-5 rounded-lg space-y-4">
+            {/* LOGO + NAME */}
+            <div className="flex items-center gap-4">
+              <img
+                src={logo}
+                alt="LS Cable TV Logo"
+                className="h-14 w-14 object-contain rounded-xl border bg-white p-2"
+              />
+
+              <div>
+                <p className="text-xs text-muted-foreground">
+                  Internship Company
+                </p>
+                <p className="text-sm font-semibold">L&S Cable TV, Inc.</p>
+              </div>
+            </div>
+
+            {/* MAP */}
+            <div className="rounded-lg overflow-hidden border">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!3m2!1sen!2sph!4v1776112644636!5m2!1sen!2sph!6m8!1m7!1sG7SwIHKi02Ln0iJm1Z_HLA!2m2!1d12.34925592847829!2d121.0706911972708!3f288.4641406572949!4f-10.160971052619175!5f0.7820865974627469"
+                className="w-full h-64 sm:h-72"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </section>
+      </FadeInSection>
+
+      {/* INTRO */}
       <FadeInSection delay={0.1}>
         <section>
           <h2 className="text-lg font-semibold mb-3">Introduction</h2>
-
-          <p className="text-muted-foreground leading-relaxed">
-            This portfolio showcases my OJT experience, skills, and projects. It
-            highlights my growth as an Information Technology student during my
-            internship journey.
+          <p className="text-muted-foreground text-sm">
+            This portfolio is created to showcase the skills, knowledge, and
+            various projects I have developed throughout my On-the-Job Training
+            (OJT) internship. It reflects the experiences, challenges, and
+            learnings I gained while working in a professional environment,
+            highlighting my growth as an aspiring professional.
           </p>
         </section>
       </FadeInSection>
 
       {/* CONTENTS */}
-      <FadeInSection delay={0.12}>
+      <FadeInSection delay={0.15}>
         <section>
           <h2 className="text-lg font-semibold mb-3 flex items-center gap-2">
             <File className="h-5 w-5 text-primary" />
@@ -166,13 +188,10 @@ export default function QuickOverview() {
               <StaggerItem key={item.url}>
                 <button
                   onClick={() => navigate(item.url)}
-                  className="flex items-center justify-between p-3 rounded-lg border border-border bg-card hover:bg-accent/50 transition w-full"
+                  className="flex items-center justify-between p-3 rounded-lg border bg-card hover:bg-accent/50 transition w-full"
                 >
-                  <span className="flex items-center gap-2 text-sm">
-                    <item.icon className="h-4 w-4 text-primary" />
-                    {item.title}
-                  </span>
-                  <span className="text-xs text-muted-foreground">→</span>
+                  <span className="text-sm">{item.title}</span>
+                  <ArrowRight className="h-4 w-4  opacity-70" />
                 </button>
               </StaggerItem>
             ))}
@@ -181,7 +200,7 @@ export default function QuickOverview() {
       </FadeInSection>
 
       {/* CHAPTERS */}
-      <FadeInSection delay={0.15}>
+      <FadeInSection delay={0.2}>
         <section>
           <h2 className="text-lg font-semibold mb-3 flex items-center gap-2">
             <BookOpen className="h-5 w-5 text-primary" />
@@ -193,9 +212,10 @@ export default function QuickOverview() {
               <StaggerItem key={ch.url}>
                 <button
                   onClick={() => navigate(ch.url)}
-                  className="p-3 text-left rounded-lg border border-border bg-card hover:bg-accent/50 w-full transition"
+                  className="flex justify-between items-center p-3 rounded-lg border bg-card hover:bg-accent/50 transition w-full"
                 >
-                  {ch.title}
+                  <span className="text-sm">{ch.title}</span>
+                  <ArrowRight className="h-4 w-4 opacity-70" />
                 </button>
               </StaggerItem>
             ))}
@@ -204,7 +224,7 @@ export default function QuickOverview() {
       </FadeInSection>
 
       {/* APPENDICES */}
-      <FadeInSection delay={0.2}>
+      <FadeInSection delay={0.25}>
         <section>
           <h2 className="text-lg font-semibold mb-3 flex items-center gap-2">
             <Paperclip className="h-5 w-5 text-primary" />
@@ -216,9 +236,10 @@ export default function QuickOverview() {
               <StaggerItem key={a.url}>
                 <button
                   onClick={() => navigate(a.url)}
-                  className="p-3 text-center rounded-lg border border-border bg-card hover:bg-accent/50 w-full transition"
+                  className="flex justify-between items-center p-3 rounded-lg border bg-card hover:bg-accent/50 transition w-full"
                 >
-                  {a.title}
+                  <span className="text-sm">{a.title}</span>
+                  <ArrowRight className="h-4 w-4  opacity-70" />
                 </button>
               </StaggerItem>
             ))}
@@ -226,32 +247,24 @@ export default function QuickOverview() {
         </section>
       </FadeInSection>
 
-      {/* OJT EXPERIENCE GALLERY */}
-      <FadeInSection delay={0.25}>
+      {/* OJT GALLERY */}
+      <FadeInSection delay={0.3}>
         <section>
-          <h2 className="text-lg font-semibold mb-3">
-            On-the-Job Training Experience
-          </h2>
-
-          <p className="text-muted-foreground mb-4 text-sm">
-            A glimpse of my tasks, learnings, and real-world experience during
-            my internship journey.
-          </p>
+          <h2 className="text-lg font-semibold mb-3">OJT Experience</h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {ojtExperience.map((item, index) => (
+            {ojtExperience.map((item, i) => (
               <div
-                key={index}
+                key={i}
                 onClick={() => setSelectedImage(item.image)}
-                className="rounded-lg border border-border bg-card overflow-hidden cursor-pointer hover:shadow-md transition"
+                className="rounded-lg border bg-card overflow-hidden cursor-pointer"
               >
                 <img
                   src={item.image}
-                  alt={item.title}
-                  className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                  className="w-full h-48 object-cover hover:scale-105 transition"
                 />
                 <div className="p-3">
-                  <h3 className="text-sm font-medium">{item.title}</h3>
+                  <p className="text-sm font-medium">{item.title}</p>
                 </div>
               </div>
             ))}
@@ -262,13 +275,12 @@ export default function QuickOverview() {
       {/* LIGHTBOX */}
       {selectedImage && (
         <div
-          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/80 flex items-center justify-center"
           onClick={() => setSelectedImage(null)}
         >
           <img
             src={selectedImage}
-            alt="Preview"
-            className="max-w-4xl max-h-[90vh] rounded-lg shadow-lg"
+            className="max-w-4xl max-h-[90vh] rounded-lg"
           />
         </div>
       )}
