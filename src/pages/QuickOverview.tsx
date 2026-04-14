@@ -20,7 +20,7 @@ import {
 } from "@/components/Animations";
 
 import profileImg from "@/assets/profile-placeholder.jpg";
-import logo from "@/assets/ls-logo.png";
+import logo from "@/assets/LS-Logo.png";
 
 /* OJT IMAGES */
 import ojt1 from "@/assets/OJT1.jpg";
