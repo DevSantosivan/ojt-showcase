@@ -67,7 +67,7 @@ const ojtExperience = [
 export default function QuickOverview() {
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
+  console.log("GIT REAL TEST 123");
   return (
     <div className="space-y-8">
       {/* PROFILE */}
