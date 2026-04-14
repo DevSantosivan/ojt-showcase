@@ -1,5 +1,5 @@
 import { FadeInSection } from "@/components/Animations";
-import logo from "@/assets/ls-logo.png";
+import logo from "@/assets/LS-Logo.png";
 
 export function Chapter2() {
   return (
