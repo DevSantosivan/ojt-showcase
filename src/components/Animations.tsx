@@ -19,7 +19,11 @@ export function PageTransition({ children, className }: Props) {
   );
 }
 
-export function FadeInSection({ children, className, delay = 0 }: Props & { delay?: number }) {
+export function FadeInSection({
+  children,
+  className,
+  delay = 0,
+}: Props & { delay?: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -55,7 +59,11 @@ export function StaggerItem({ children, className }: Props) {
     <motion.div
       variants={{
         hidden: { opacity: 0, y: 16 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.35, ease: "easeOut" },
+        },
       }}
       className={className}
     >
@@ -64,7 +72,11 @@ export function StaggerItem({ children, className }: Props) {
   );
 }
 
-export function ScaleIn({ children, className, delay = 0 }: Props & { delay?: number }) {
+export function ScaleIn({
+  children,
+  className,
+  delay = 0,
+}: Props & { delay?: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
