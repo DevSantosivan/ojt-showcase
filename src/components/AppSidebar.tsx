@@ -52,7 +52,10 @@ const menuStructure: { label: string; items: MenuItem[] }[] = [
           { title: "Title Page", url: "/contents/title-page" },
           { title: "Acknowledgement", url: "/contents/acknowledgement" },
           { title: "Student Trainee Prayer", url: "/contents/trainee-prayer" },
-          { title: "Personal Philosophy", url: "/contents/personal-philosophy" },
+          {
+            title: "Personal Philosophy",
+            url: "/contents/personal-philosophy",
+          },
           { title: "Career Plan", url: "/contents/career-plan" },
         ],
       },
@@ -74,6 +77,15 @@ const menuStructure: { label: string; items: MenuItem[] }[] = [
           { title: "Appendix B", url: "/appendices/b" },
           { title: "Appendix C", url: "/appendices/c" },
           { title: "Appendix D", url: "/appendices/d" },
+          { title: "Appendix E", url: "/appendices/e" },
+          { title: "Appendix F", url: "/appendices/f" },
+          { title: "Appendix G", url: "/appendices/g" },
+          { title: "Appendix H", url: "/appendices/h" },
+          { title: "Appendix I", url: "/appendices/i" },
+          { title: "Appendix J", url: "/appendices/j" },
+          { title: "Appendix K", url: "/appendices/k" },
+          { title: "Appendix L", url: "/appendices/l" },
+          { title: "Appendix Q", url: "/appendices/q" },
         ],
       },
     ],
@@ -82,14 +94,31 @@ const menuStructure: { label: string; items: MenuItem[] }[] = [
     label: "Links",
     items: [
       { title: "Resume", url: "/resume", icon: ExternalLink },
-      { title: "Email Me", url: "mailto:ivan.santos@email.com", icon: Mail, external: true },
-      { title: "GitHub", url: "https://github.com", icon: Github, external: true },
+      {
+        title: "Email Me",
+        url: "mailto:ivan.santos@email.com",
+        icon: Mail,
+        external: true,
+      },
+      {
+        title: "GitHub",
+        url: "https://github.com",
+        icon: Github,
+        external: true,
+      },
     ],
   },
 ];
 
-function CollapsibleMenu({ item, currentPath }: { item: MenuItem; currentPath: string }) {
-  const isChildActive = item.children?.some((c) => c.url === currentPath) ?? false;
+function CollapsibleMenu({
+  item,
+  currentPath,
+}: {
+  item: MenuItem;
+  currentPath: string;
+}) {
+  const isChildActive =
+    item.children?.some((c) => c.url === currentPath) ?? false;
   const [open, setOpen] = useState(isChildActive);
   const navigate = useNavigate();
 
@@ -99,19 +128,23 @@ function CollapsibleMenu({ item, currentPath }: { item: MenuItem; currentPath: s
         onClick={() => setOpen(!open)}
         className={cn(
           "w-full justify-between pr-2 hover:bg-accent/60",
-          isChildActive && "text-primary font-medium"
+          isChildActive && "text-primary font-medium",
         )}
       >
         <span className="flex items-center gap-2">
           {item.icon && <item.icon className="h-4 w-4" />}
           <span className="text-sm">{item.title}</span>
         </span>
-        {open ? <ChevronDown className="h-3.5 w-3.5" /> : <ChevronRight className="h-3.5 w-3.5" />}
+        {open ? (
+          <ChevronDown className="h-3.5 w-3.5" />
+        ) : (
+          <ChevronRight className="h-3.5 w-3.5" />
+        )}
       </SidebarMenuButton>
       <div
         className={cn(
           "overflow-hidden transition-all duration-200",
-          open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          open ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0",
         )}
       >
         <div className="ml-4 border-l border-border pl-2 mt-0.5 space-y-0.5">
@@ -123,7 +156,7 @@ function CollapsibleMenu({ item, currentPath }: { item: MenuItem; currentPath: s
                 "block w-full text-left text-sm py-1.5 px-2 rounded-md transition-colors",
                 currentPath === child.url
                   ? "bg-primary/10 text-primary font-medium"
-                  : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
+                  : "text-muted-foreground hover:text-foreground hover:bg-accent/50",
               )}
             >
               {child.title}
@@ -144,7 +177,9 @@ export function AppSidebar() {
     <Sidebar className="border-r border-sidebar-border">
       <SidebarHeader className="p-4 pb-2">
         <div className="flex items-center justify-between">
-          <h2 className="font-heading text-base font-semibold tracking-tight">OJT Portfolio</h2>
+          <h2 className="font-heading text-base font-semibold tracking-tight">
+            OJT Portfolio
+          </h2>
           <ThemeToggle />
         </div>
       </SidebarHeader>
@@ -161,7 +196,12 @@ export function AppSidebar() {
                     <CollapsibleMenu item={item} currentPath={currentPath} />
                   ) : item.external ? (
                     <SidebarMenuButton asChild className="hover:bg-accent/60">
-                      <a href={item.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2"
+                      >
                         {item.icon && <item.icon className="h-4 w-4" />}
                         <span className="text-sm">{item.title}</span>
                       </a>
@@ -171,7 +211,8 @@ export function AppSidebar() {
                       onClick={() => navigate(item.url!)}
                       className={cn(
                         "hover:bg-accent/60",
-                        currentPath === item.url && "bg-primary/10 text-primary font-medium"
+                        currentPath === item.url &&
+                          "bg-primary/10 text-primary font-medium",
                       )}
                     >
                       {item.icon && <item.icon className="h-4 w-4" />}

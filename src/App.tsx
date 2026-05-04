@@ -23,6 +23,15 @@ import {
   AppendixB,
   AppendixC,
   AppendixD,
+  AppendixE,
+  AppendixF,
+  AppendixG,
+  AppendixH,
+  AppendixI,
+  AppendixJ,
+  AppendixK,
+  AppendixL,
+  AppendixQ,
 } from "@/pages/appendices/AppendixPages";
 import Resume from "@/pages/Resume";
 import NotFound from "@/pages/NotFound";
@@ -61,6 +70,15 @@ const App = () => (
             <Route path="/appendices/b" element={<AppendixB />} />
             <Route path="/appendices/c" element={<AppendixC />} />
             <Route path="/appendices/d" element={<AppendixD />} />
+            <Route path="/appendices/e" element={<AppendixE />} />
+            <Route path="/appendices/f" element={<AppendixF />} />
+            <Route path="/appendices/g" element={<AppendixG />} />
+            <Route path="/appendices/h" element={<AppendixH />} />
+            <Route path="/appendices/i" element={<AppendixI />} />
+            <Route path="/appendices/j" element={<AppendixJ />} />
+            <Route path="/appendices/k" element={<AppendixK />} />
+            <Route path="/appendices/l" element={<AppendixL />} />
+            <Route path="/appendices/q" element={<AppendixQ />} />
             <Route path="/resume" element={<Resume />} />
           </Route>
           <Route path="*" element={<NotFound />} />
