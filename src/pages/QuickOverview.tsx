@@ -19,6 +19,8 @@ import {
   ScaleIn,
 } from "@/components/Animations";
 
+import resumeImg from "@/assets/resume.png";
+
 import profileImg from "@/assets/profile-placeholder.jpg";
 import logo from "@/assets/LS-Logo.png";
 
@@ -45,6 +47,19 @@ const appendices = [
   { title: "Appendix B", url: "/appendices/b" },
   { title: "Appendix C", url: "/appendices/c" },
   { title: "Appendix D", url: "/appendices/d" },
+  { title: "Appendix E", url: "/appendices/e" },
+  { title: "Appendix F", url: "/appendices/f" },
+  { title: "Appendix G", url: "/appendices/g" },
+  { title: "Appendix H", url: "/appendices/h" },
+  { title: "Appendix I", url: "/appendices/i" },
+  { title: "Appendix J", url: "/appendices/j" },
+  { title: "Appendix K", url: "/appendices/k" },
+  { title: "Appendix L", url: "/appendices/l" },
+  { title: "Appendix M", url: "/appendices/m" },
+  { title: "Appendix N", url: "/appendices/n" },
+  { title: "Appendix O", url: "/appendices/o" },
+  { title: "Appendix P", url: "/appendices/p" },
+  { title: "Appendix Q", url: "/appendices/q" },
 ];
 
 /* CONTENTS */
@@ -65,6 +80,14 @@ const ojtExperience = [
 ];
 
 export default function QuickOverview() {
+  const handleResumeDownload = () => {
+    const link = document.createElement("a");
+    link.href = resumeImg;
+    link.download = "Ivan-Santos-Resume.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   console.log("GIT REAL TEST 123");
@@ -72,15 +95,19 @@ export default function QuickOverview() {
     <div className="space-y-8">
       {/* PROFILE */}
       <ScaleIn>
-        <div className="rounded-lg border border-border bg-card p-6 sm:p-8">
+        <div className="rounded-lg   p-1 sm:p-2">
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
             <img
               src={profileImg}
               alt="Ivan Francisco Santos"
-              className="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover border-2 border-border"
+              className="w-42 h-42 sm:w-40 sm:h-50 rounded-full object-cover border-2 border-border"
             />
 
             <div className="text-center sm:text-left flex-1">
+              <p className="text-xs font-medium bg-gradient-to-r from-sky-500 to-violet-500 text-transparent bg-clip-text">
+                On-the-Job Training (OJT) Student Trainee
+              </p>
+
               <h1 className="text-2xl sm:text-3xl font-bold">
                 Ivan Francisco Santos
               </h1>
@@ -90,7 +117,7 @@ export default function QuickOverview() {
               </p>
 
               <div className="flex flex-wrap gap-3 mt-4 justify-center sm:justify-start">
-                <Button onClick={() => navigate("/resume")}>
+                <Button onClick={handleResumeDownload}>
                   <FileDown className="h-4 w-4 mr-2" />
                   Resume
                 </Button>
@@ -98,7 +125,7 @@ export default function QuickOverview() {
                 <Button
                   variant="outline"
                   onClick={() =>
-                    (window.location.href = "mailto:ivan.santos@email.com")
+                    (window.location.href = "mailto:ivansantos.bsit@gmail.com")
                   }
                 >
                   <Mail className="h-4 w-4 mr-2" />
@@ -129,7 +156,7 @@ export default function QuickOverview() {
           </h2>
 
           {/* COMPANY CARD */}
-          <div className="card-clean border p-5 rounded-lg space-y-4">
+          <div className="  p-5 rounded-lg space-y-4">
             {/* LOGO + NAME */}
             <div className="flex items-center gap-4">
               <img

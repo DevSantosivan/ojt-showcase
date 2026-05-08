@@ -23,8 +23,13 @@ import {
   SidebarHeader,
   SidebarFooter,
 } from "@/components/ui/sidebar";
-import { ThemeToggle } from "@/components/ThemeToggle";
+
 import { cn } from "@/lib/utils";
+
+/* =========================
+   📄 RESUME IMPORT (ASSETS)
+   ========================= */
+import resumeImg from "@/assets/resume.png";
 
 interface MenuItem {
   title: string;
@@ -32,6 +37,7 @@ interface MenuItem {
   icon?: React.ComponentType<{ className?: string }>;
   children?: MenuItem[];
   external?: boolean;
+  download?: boolean; // 👈 added
 }
 
 const menuStructure: { label: string; items: MenuItem[] }[] = [
@@ -85,6 +91,10 @@ const menuStructure: { label: string; items: MenuItem[] }[] = [
           { title: "Appendix J", url: "/appendices/j" },
           { title: "Appendix K", url: "/appendices/k" },
           { title: "Appendix L", url: "/appendices/l" },
+          { title: "Appendix M", url: "/appendices/m" },
+          { title: "Appendix N", url: "/appendices/n" },
+          { title: "Appendix O", url: "/appendices/o" },
+          { title: "Appendix P", url: "/appendices/p" },
           { title: "Appendix Q", url: "/appendices/q" },
         ],
       },
@@ -93,16 +103,20 @@ const menuStructure: { label: string; items: MenuItem[] }[] = [
   {
     label: "Links",
     items: [
-      { title: "Resume", url: "/resume", icon: ExternalLink },
+      {
+        title: "Resume",
+        icon: ExternalLink,
+        download: true, // 👈 IMPORTANT
+      },
       {
         title: "Email Me",
-        url: "mailto:ivan.santos@email.com",
+        url: "mailto:ivansantos.bsit@gmail.com",
         icon: Mail,
         external: true,
       },
       {
         title: "GitHub",
-        url: "https://github.com",
+        url: "https://github.com/DevSantosivan",
         icon: Github,
         external: true,
       },
@@ -141,6 +155,7 @@ function CollapsibleMenu({
           <ChevronRight className="h-3.5 w-3.5" />
         )}
       </SidebarMenuButton>
+
       <div
         className={cn(
           "overflow-hidden transition-all duration-200",
@@ -173,6 +188,18 @@ export function AppSidebar() {
   const navigate = useNavigate();
   const currentPath = location.pathname;
 
+  /* =========================
+     📥 RESUME DOWNLOAD HANDLER
+     ========================= */
+  const handleResumeDownload = () => {
+    const link = document.createElement("a");
+    link.href = resumeImg; // from assets
+    link.download = "Ivan-Santos-Resume.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <Sidebar className="border-r border-sidebar-border">
       <SidebarHeader className="p-4 pb-2">
@@ -180,15 +207,16 @@ export function AppSidebar() {
           <h2 className="font-heading text-base font-semibold tracking-tight">
             OJT Portfolio
           </h2>
-          <ThemeToggle />
         </div>
       </SidebarHeader>
+
       <SidebarContent className="px-2">
         {menuStructure.map((group) => (
           <SidebarGroup key={group.label}>
             <SidebarGroupLabel className="text-[11px] uppercase tracking-wider text-muted-foreground/70 font-medium px-2 mb-1">
               {group.label}
             </SidebarGroupLabel>
+
             <SidebarMenu>
               {group.items.map((item) => (
                 <SidebarMenuItem key={item.title}>
@@ -205,6 +233,14 @@ export function AppSidebar() {
                         {item.icon && <item.icon className="h-4 w-4" />}
                         <span className="text-sm">{item.title}</span>
                       </a>
+                    </SidebarMenuButton>
+                  ) : item.download ? (
+                    <SidebarMenuButton
+                      onClick={handleResumeDownload}
+                      className="hover:bg-accent/60"
+                    >
+                      {item.icon && <item.icon className="h-4 w-4" />}
+                      <span className="text-sm">{item.title}</span>
                     </SidebarMenuButton>
                   ) : (
                     <SidebarMenuButton
@@ -225,6 +261,7 @@ export function AppSidebar() {
           </SidebarGroup>
         ))}
       </SidebarContent>
+
       <SidebarFooter className="p-4 pt-2">
         <p className="text-[11px] text-muted-foreground">© 2025 Ivan Santos</p>
       </SidebarFooter>

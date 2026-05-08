@@ -13,6 +13,7 @@ import {
   Database,
   GitBranch,
   Server,
+  FileBadge,
 } from "lucide-react";
 
 /* OJT IMAGES */
@@ -28,11 +29,11 @@ interface TechItem {
   color: string;
 }
 
-interface CertificateItem {
+type CertificateItem = {
   title: string;
-  image: string;
   year: string;
-}
+  type?: "champion" | "First Place" | "participation";
+};
 
 /* ICON STYLE */
 const iconStyle = (color: string) => ({
@@ -76,23 +77,13 @@ const designTools: TechItem[] = [
 const certificates: CertificateItem[] = [
   {
     title: "Champion – IT Day Web Design Competition",
-    image: ojt1,
-    year: "2025",
+    year: "2023",
+    type: "champion",
   },
   {
-    title: "1st Place – IT Skills Competition (Team Entry)",
-    image: ojt2,
-    year: "2025",
-  },
-  {
-    title: "Participation Certificate – Technical Challenge",
-    image: ojt3,
-    year: "2025",
-  },
-  {
-    title: "Achievement Award – OJT Recognition",
-    image: ojt4,
-    year: "2025",
+    title: "1st Place – IT Day Web Design Competition",
+    year: "2024",
+    type: "First Place",
   },
 ];
 
@@ -113,6 +104,7 @@ function TechCard({ item }: { item: TechItem }) {
 }
 
 /* CERT CARD */
+
 function CertificateCard({
   cert,
   onClick,
@@ -123,14 +115,19 @@ function CertificateCard({
   return (
     <div
       onClick={onClick}
-      className="cursor-pointer rounded-xl border border-border bg-card overflow-hidden hover:scale-[1.02] transition"
+      className="cursor-pointer rounded-xl border border-border bg-card overflow-hidden hover:scale-[1.03] transition shadow-sm hover:shadow-md"
     >
-      <img
-        src={cert.image}
-        className="h-44 w-full object-cover"
-        alt={cert.title}
-      />
+      {/* ICON SECTION (REPLACED IMAGE) */}
+      <div className="h-44 w-full flex items-center justify-center bg-gradient-to-br from-primary/10 to-primary/5">
+        <div className="flex flex-col items-center gap-2">
+          <div className="p-4 rounded-full bg-primary/10">
+            <FileBadge className="h-10 w-10 text-primary" />
+          </div>
+          <span className="text-xs text-muted-foreground">Certificate</span>
+        </div>
+      </div>
 
+      {/* TEXT INFO */}
       <div className="p-3 space-y-1">
         <div className="flex items-center gap-2">
           <Award className="text-primary h-4 w-4" />
@@ -142,7 +139,6 @@ function CertificateCard({
     </div>
   );
 }
-
 /* MAIN */
 export default function Showcase() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -211,17 +207,13 @@ export default function Showcase() {
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {certificates.map((cert) => (
             <StaggerItem key={cert.title}>
-              <div
-                onClick={() => setSelectedImage(cert.image)}
-                className="cursor-pointer"
-              >
-                <CertificateCard
-                  cert={cert}
-                  onClick={function (): void {
-                    throw new Error("Function not implemented.");
-                  }}
-                />
-              </div>
+              <CertificateCard
+                cert={cert}
+                onClick={() => {
+                  // optional: open modal or console log muna
+                  console.log("Selected certificate:", cert.title);
+                }}
+              />
             </StaggerItem>
           ))}
         </StaggerContainer>

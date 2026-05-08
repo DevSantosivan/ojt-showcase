@@ -31,6 +31,10 @@ import {
   AppendixJ,
   AppendixK,
   AppendixL,
+  AppendixM,
+  AppendixN,
+  AppendixO,
+  AppendixP,
   AppendixQ,
 } from "@/pages/appendices/AppendixPages";
 import Resume from "@/pages/Resume";
@@ -78,6 +82,11 @@ const App = () => (
             <Route path="/appendices/j" element={<AppendixJ />} />
             <Route path="/appendices/k" element={<AppendixK />} />
             <Route path="/appendices/l" element={<AppendixL />} />
+            <Route path="/appendices/q" element={<AppendixQ />} />
+            <Route path="/appendices/m" element={<AppendixM />} />
+            <Route path="/appendices/n" element={<AppendixN />} />
+            <Route path="/appendices/o" element={<AppendixO />} />
+            <Route path="/appendices/p" element={<AppendixP />} />
             <Route path="/appendices/q" element={<AppendixQ />} />
             <Route path="/resume" element={<Resume />} />
           </Route>

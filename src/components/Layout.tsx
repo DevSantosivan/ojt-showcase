@@ -53,7 +53,7 @@ export function Layout() {
             <div className="flex items-center gap-4">
               {/* Social Links */}
               <a
-                href="https://github.com/yourusername"
+                href="https://github.com/https://github.com/DevSantosivan"
                 target="_blank"
                 className="hover:text-primary transition"
               >
@@ -61,7 +61,7 @@ export function Layout() {
               </a>
 
               <a
-                href="https://facebook.com/yourprofile"
+                href="https://www.facebook.com/profile.php?id=100035013640544"
                 target="_blank"
                 className="hover:text-primary transition"
               >
