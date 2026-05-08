@@ -97,11 +97,21 @@ export default function QuickOverview() {
       <ScaleIn>
         <div className="rounded-lg   p-1 sm:p-2">
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-            <img
-              src={profileImg}
-              alt="Ivan Francisco Santos"
-              className="w-42 h-42 sm:w-40 sm:h-50 rounded-full object-cover border-2 border-border"
-            />
+            <div className="relative w-fit">
+              {/* ROTATING GLOW RING */}
+              <div className="absolute inset-0 rounded-2xl animate-spin-slow bg-gradient-to-tr from-sky-500 via-violet-500 to-teal-400 opacity-80 blur-md" />
+
+              <div className="absolute inset-[5px] rounded-2xl bg-white" />
+
+              {/* CONTENT */}
+              <div className="relative p-2">
+                <img
+                  src={profileImg}
+                  alt="Ivan Francisco Santos"
+                  className="w-32 h-32 sm:w-36 sm:h-36 object-cover rounded-xl border border-border shadow-md"
+                />
+              </div>
+            </div>
 
             <div className="text-center sm:text-left flex-1">
               <p className="text-xs font-medium bg-gradient-to-r from-sky-500 to-violet-500 text-transparent bg-clip-text">
