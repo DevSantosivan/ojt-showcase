@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -39,6 +39,7 @@ import {
 } from "@/pages/appendices/AppendixPages";
 import Resume from "@/pages/Resume";
 import NotFound from "@/pages/NotFound";
+import Welcome from "@/pages/Welcome";
 
 const queryClient = new QueryClient();
 
@@ -49,8 +50,15 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          {/* ROOT REDIRECT */}
+          <Route path="/" element={<Navigate to="/welcome" replace />} />
+
+          {/* WELCOME PAGE (NO LAYOUT) */}
+          <Route path="/welcome" element={<Welcome />} />
+
+          {/* DASHBOARD WRAPPER */}
           <Route element={<Layout />}>
-            <Route path="/" element={<QuickOverview />} />
+            <Route path="/dashboard" element={<QuickOverview />} />
             <Route path="/showcase" element={<Showcase />} />
             <Route path="/contents/title-page" element={<TitlePage />} />
             <Route
@@ -66,10 +74,15 @@ const App = () => (
               element={<PersonalPhilosophy />}
             />
             <Route path="/contents/career-plan" element={<CareerPlan />} />
+
             <Route path="/chapters/1" element={<Chapter1 />} />
             <Route path="/chapters/2" element={<Chapter2 />} />
             <Route path="/chapters/3" element={<Chapter3 />} />
             <Route path="/chapters/4" element={<Chapter4 />} />
+
+            <Route path="/resume" element={<Resume />} />
+
+            {/* APPENDICES */}
             <Route path="/appendices/a" element={<AppendixA />} />
             <Route path="/appendices/b" element={<AppendixB />} />
             <Route path="/appendices/c" element={<AppendixC />} />
@@ -82,14 +95,14 @@ const App = () => (
             <Route path="/appendices/j" element={<AppendixJ />} />
             <Route path="/appendices/k" element={<AppendixK />} />
             <Route path="/appendices/l" element={<AppendixL />} />
-            <Route path="/appendices/q" element={<AppendixQ />} />
             <Route path="/appendices/m" element={<AppendixM />} />
             <Route path="/appendices/n" element={<AppendixN />} />
             <Route path="/appendices/o" element={<AppendixO />} />
             <Route path="/appendices/p" element={<AppendixP />} />
             <Route path="/appendices/q" element={<AppendixQ />} />
-            <Route path="/resume" element={<Resume />} />
           </Route>
+
+          {/* NOT FOUND */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

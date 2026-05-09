@@ -44,7 +44,7 @@ const menuStructure: { label: string; items: MenuItem[] }[] = [
   {
     label: "General",
     items: [
-      { title: "Quick Overview", url: "/", icon: LayoutDashboard },
+      { title: "Quick Overview", url: "/dashboard", icon: LayoutDashboard },
       { title: "Showcase", url: "/showcase", icon: Images },
     ],
   },
