@@ -7,7 +7,12 @@ import {
   MapPin,
   Users,
   Network,
+  ImageIcon,
 } from "lucide-react";
+
+import mainOfficeImg from "@/assets/appendix/office1.jfif";
+import branch1Img from "@/assets/appendix/office2.jfif";
+import branch2Img from "@/assets/appendix/office3.jfif";
 
 export function Chapter2() {
   return (
@@ -154,21 +159,45 @@ export function Chapter2() {
       <FadeInSection delay={0.35}>
         <section className="space-y-4">
           <h3 className="flex items-center gap-2 text-lg font-semibold text-muted-foreground">
-            <MapPin className="w-5 h-5" />
-            Office Locations
+            <ImageIcon className="w-5 h-5" />
+            Main Office Pictures
           </h3>
 
           <div className="grid md:grid-cols-3 gap-4">
-            <div className="h-40 rounded-2xl border bg-muted flex items-center justify-center text-sm">
-              Main Office
+            {/* MAIN OFFICE */}
+            <div className="h-40 rounded-2xl border bg-muted overflow-hidden relative">
+              <img
+                src={mainOfficeImg}
+                alt="Main Office"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-0 w-full bg-black/50 text-white text-sm p-2 text-center">
+                Employee's Main Office
+              </div>
             </div>
 
-            <div className="h-40 rounded-2xl border bg-muted flex items-center justify-center text-sm">
-              Branch Office 1
+            {/* BRANCH 1 */}
+            <div className="h-40 rounded-2xl border bg-muted overflow-hidden relative">
+              <img
+                src={branch1Img}
+                alt="Branch Office 1"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-0 w-full bg-black/50 text-white text-sm p-2 text-center">
+                General Manager's Office
+              </div>
             </div>
 
-            <div className="h-40 rounded-2xl border bg-muted flex items-center justify-center text-sm">
-              Branch Office 2
+            {/* BRANCH 2 */}
+            <div className="h-40 rounded-2xl border bg-muted overflow-hidden relative">
+              <img
+                src={branch2Img}
+                alt="Branch Office 2"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-0 w-full bg-black/50 text-white text-sm p-2 text-center">
+                Waiting Area
+              </div>
             </div>
           </div>
         </section>
@@ -176,44 +205,84 @@ export function Chapter2() {
 
       {/* ORGANIZATIONAL STRUCTURE */}
       <FadeInSection delay={0.45}>
-        <section className="space-y-6">
+        <section className="bg-background rounded-3xl p-6 md:p-10 space-y-6">
           <div className="flex items-center gap-2 text-violet-500">
             <Network className="w-5 h-5" />
 
             <h2 className="text-2xl font-bold">4. Organizational Structure</h2>
           </div>
 
-          {/* ORG CHART (CLEAN VERSION) */}
+          {/* ORG CHART */}
           <div className="text-center space-y-6">
             <p className="text-sm text-muted-foreground">
               Organizational Chart of L&S Cable TV, Inc.
             </p>
 
             <div className="flex flex-col items-center space-y-4">
-              {/* TOP */}
-              <div className="px-6 py-2 rounded-xl bg-violet-500 text-white font-semibold shadow-sm">
-                General Manager
+              {/* PRESIDENT */}
+              <div className="px-8 py-4 rounded-2xl bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white shadow-lg">
+                <h3 className="font-bold text-lg">President</h3>
+
+                <p className="text-sm text-white/80">
+                  Engr. Danilo S. Sebastian
+                </p>
               </div>
 
               {/* LINE */}
               <div className="w-px h-6 bg-muted-foreground/40" />
 
-              {/* BOTTOM GRID */}
-              <div className="grid grid-cols-2 gap-6">
-                <div className="px-4 py-2 text-sm text-muted-foreground">
-                  Operations Manager
+              {/* GRID */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {/* DIRECTOR */}
+                <div className="rounded-2xl bg-sky-500/10 border border-sky-500/20 p-5 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2 text-sky-500">
+                    <Users className="w-4 h-4" />
+
+                    <h3 className="font-bold text-lg">Director</h3>
+                  </div>
+
+                  <p className="text-sm text-muted-foreground">
+                    Dr. Thelma S. Sarmiento
+                  </p>
                 </div>
 
-                <div className="px-4 py-2 text-sm text-muted-foreground">
-                  Technical Head
+                {/* TECHNICAL HEAD */}
+                <div className="rounded-2xl bg-emerald-500/10 border border-emerald-500/20 p-5 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2 text-emerald-500">
+                    <Globe className="w-4 h-4" />
+
+                    <h3 className="font-bold text-lg">Technical Head</h3>
+                  </div>
+
+                  <p className="text-sm text-muted-foreground">
+                    Engr. Leon P. Sebastian, Jr.
+                  </p>
                 </div>
 
-                <div className="px-4 py-2 text-sm text-muted-foreground">
-                  Finance Dept.
+                {/* FINANCE */}
+                <div className="rounded-2xl bg-amber-500/10 border border-amber-500/20 p-5 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2 text-amber-500">
+                    <Building2 className="w-4 h-4" />
+
+                    <h3 className="font-bold text-lg">Finance Department</h3>
+                  </div>
+
+                  <p className="text-sm text-muted-foreground">
+                    Dr. Felixberto Sarmiento
+                  </p>
                 </div>
 
-                <div className="px-4 py-2 text-sm text-muted-foreground">
-                  IT Support Team
+                {/* GENERAL MANAGER */}
+                <div className="rounded-2xl bg-rose-500/10 border border-rose-500/20 p-5 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2 text-rose-500">
+                    <Network className="w-4 h-4" />
+
+                    <h3 className="font-bold text-lg">General Manager</h3>
+                  </div>
+
+                  <p className="text-sm text-muted-foreground">
+                    Dan Patric D. Sebastian
+                  </p>
                 </div>
               </div>
             </div>

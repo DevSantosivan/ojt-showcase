@@ -13,7 +13,7 @@ import {
 
 import imgA1 from "@/assets/appendix/A.jpg";
 
-import imgB1 from "@/assets/appendix/B.jpg";
+import imgB1 from "@/assets/appendix/ENROLLS.png";
 import imgC1 from "@/assets/appendix/valid-id1.jpg";
 import imgC2 from "@/assets/appendix/valid-id2.jpg";
 
@@ -39,7 +39,7 @@ import imgQ2 from "@/assets/appendix/Q-2.jpg";
 import codeofethics from "@/assets/appendix/APPENDIX-0.png";
 import preservice from "@/assets/appendix/PRE-SEM.jpg";
 import evaluation from "@/assets/appendix/APPENDIXQ.jfif";
-
+import CLEARANCE from "@/assets/appendix/CERTOFCLEARANCE.png";
 import oficework from "@/assets/appendix/image-works/1.jfif";
 import oficework1 from "@/assets/appendix/image-works/2.jfif";
 import oficework2 from "@/assets/appendix/image-works/3.jfif";
@@ -146,7 +146,7 @@ const appendices: Appendix[] = [
   {
     label: "Appendix L",
     title: "Certificate of Clearance",
-    images: [{ id: 1, src: imgL1, alt: "Clearance" }],
+    images: [{ id: 1, src: CLEARANCE, alt: "Clearance" }],
   },
 
   /* =========================

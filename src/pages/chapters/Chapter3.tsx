@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   FileText,
   Clock,
@@ -39,9 +40,52 @@ import dtrImg from "@/assets/appendix/dtr1.png";
 import dtrImg1 from "@/assets/appendix/dtr2.png";
 import dtrImg2 from "@/assets/appendix/dtr3.png";
 import progressImg from "@/assets/OJT2.jpg";
-import { useState } from "react";
 
-// eslint-disable-next-line react-hooks/rules-of-hooks
+import feb16 from "@/assets/feb16-1.jfif";
+import feb161 from "@/assets/feb16.jfif";
+import feb162 from "@/assets/feb16-2.jfif";
+import feb163 from "@/assets/feb16-3.jfif";
+import feb164 from "@/assets/feb16-4.jfif";
+
+import feb123 from "@/assets/feb23.jfif";
+
+import march from "@/assets/march.jfif";
+import march1 from "@/assets/march1.jfif";
+import march3 from "@/assets/march3.jfif";
+import march4 from "@/assets/march4.jfif";
+import march5 from "@/assets/march5.jfif";
+import march6 from "@/assets/march6.jfif";
+
+import march22 from "@/assets/march22.jfif";
+import march222 from "@/assets/march222.jfif";
+import march2222 from "@/assets/march2222.jfif";
+
+import march33 from "@/assets/march33.jfif";
+import march333 from "@/assets/march333.jfif";
+
+import march3333 from "@/assets/march3333.jfif";
+
+import march44 from "@/assets/march44.jfif";
+import march444 from "@/assets/march444.jfif";
+import march4444 from "@/assets/maarch4444.jfif";
+
+import april1 from "@/assets/april.jpg";
+import april2 from "@/assets/april2.jpg";
+import april3 from "@/assets/april3.jpg";
+import april4 from "@/assets/april4.jpg";
+import april5 from "@/assets/april1.jpg";
+import april6 from "@/assets/april5.jpg";
+import april7 from "@/assets/april6.jpg";
+import april8 from "@/assets/april7.jpg";
+import april9 from "@/assets/april8.jpg";
+import april10 from "@/assets/april9.jpg";
+import april11 from "@/assets/april10.jpg";
+import april12 from "@/assets/april11.jpg";
+import april13 from "@/assets/arpil12.jpg";
+import april14 from "@/assets/april14.jpg";
+import april16 from "@/assets/april15.jpg";
+import april17 from "@/assets/april16.jpg";
+import april18 from "@/assets/april17.jpg";
 
 const weeklyReports = [
   {
@@ -424,8 +468,67 @@ const weeklyReports = [
 ];
 
 export function Chapter3() {
+  const [selectedDoc, setSelectedDoc] = useState(null);
+
+  const [activeImage, setActiveImage] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState(null);
 
+  const [selectedWeek, setSelectedWeek] = useState(null);
+  const [activeImg, setActiveImg] = useState(null);
+  const weeklyDocumentary = [
+    {
+      date: "February 16 - 20, 2026",
+      images: [feb16, feb162, feb163],
+    },
+    {
+      date: "February 23 - 27, 2026",
+      images: [feb123, feb161, feb164],
+    },
+    {
+      date: "March 2 - 6, 2026",
+      images: [march, march1, march3, march4, march5, march6],
+    },
+    {
+      date: "March 9 - 13, 2026",
+      images: [march22, march222, march2222],
+    },
+    {
+      date: "March 16 - 20, 2026",
+      images: [march33, march333, march3333],
+    },
+    {
+      date: "March 23 - 31, 2026",
+      images: [march44, march444, march4444],
+    },
+    {
+      date: "April 6 - 10, 2026",
+      images: [april1, april2, april3, april18],
+    },
+    {
+      date: "April 13 - 17, 2026",
+      images: [april4, april5, april6, april18],
+    },
+    {
+      date: "April 20 - 24, 2026",
+      images: [april7, april8, april9, april13, april14],
+    },
+    {
+      date: "April 27 - 30, 2026",
+      images: [april10, april11, april12, april16, april17],
+    },
+  ];
+
+  const [docIndex, setDocIndex] = useState(0);
+
+  const nextDoc = () => {
+    setDocIndex((prev) => (prev + 1) % weeklyDocumentary.length);
+  };
+
+  const prevDoc = () => {
+    setDocIndex((prev) =>
+      prev === 0 ? weeklyDocumentary.length - 1 : prev - 1,
+    );
+  };
   const dtrMonths = [
     {
       title: "February 2025",
@@ -482,16 +585,21 @@ export function Chapter3() {
                   <th className="p-4 text-left">Activities</th>
                   <th className="p-4 text-left">Problems</th>
                   <th className="p-4 text-left">Remarks</th>
+                  <th className="p-4 text-left">Documentation</th> {/* NEW */}
                 </tr>
               </thead>
-
               <tbody>
-                {weeklyReports.map((week, i) =>
-                  week.items.map((item, j) => (
+                {weeklyReports.map((week, i) => {
+                  const doc = weeklyDocumentary.find(
+                    (d) => d.date === week.date,
+                  );
+
+                  return week.items.map((item, j) => (
                     <tr key={`${i}-${j}`} className="border-t border-muted/40">
                       <td className="p-4 text-muted-foreground">
                         {j === 0 ? week.date : ""}
                       </td>
+
                       <td className="p-4">{item.type}</td>
                       <td className="p-4">{item.activity}</td>
                       <td className="p-4 text-muted-foreground">
@@ -500,15 +608,189 @@ export function Chapter3() {
                       <td className="p-4 font-medium text-green-600">
                         {item.remark}
                       </td>
+
+                      {/* DOCUMENTATION BUTTON */}
+                      <td className="p-4">
+                        {j === 0 && doc ? (
+                          <button
+                            onClick={() => setSelectedWeek(doc)}
+                            className="group relative inline-flex items-center gap-2 px-4 py-1.5 text-xs font-semibold rounded-full
+      bg-sky-500/10 text-sky-600 border border-sky-500/20
+      hover:bg-sky-500 hover:text-white
+      hover:shadow-lg hover:shadow-sky-500/30
+      hover:-translate-y-1 active:scale-95
+      transition-all duration-300"
+                          >
+                            {/* 👀 blinking eyes effect */}
+                            <span className="relative flex items-center">
+                              <span className="text-base animate-bounce">
+                                👀
+                              </span>
+
+                              {/* small sparkle / attention dot */}
+                            </span>
+
+                            <span className="tracking-wide">View Docs</span>
+                            <span className="absolute -top-1 -right-2 flex h-2 w-2">
+                              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-400 opacity-75"></span>
+                              <span className="relative inline-flex h-2 w-2 rounded-full bg-orange-500"></span>
+                            </span>
+                            {/* subtle hint text on hover */}
+                            <span className="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition text-[10px] text-sky-500">
+                              Click to view 👇
+                            </span>
+                          </button>
+                        ) : null}
+                      </td>
                     </tr>
-                  )),
-                )}
+                  ));
+                })}
               </tbody>
             </table>
           </div>
         </section>
       </FadeInSection>
+      <FadeInSection delay={0.15}>
+        <div className="mt-10 space-y-6">
+          <h3 className="text-lg font-semibold text-sky-500">Documentary</h3>
 
+          {/* ================= WEEK FOLDER VIEW ================= */}
+          <FadeInSection delay={0.2}>
+            <div className="grid md:grid-cols-2 gap-4">
+              {weeklyDocumentary.map((week, i) => (
+                <div
+                  key={i}
+                  onClick={() => setSelectedWeek(week)}
+                  className="group relative cursor-pointer rounded-3xl border bg-card p-6
+  overflow-hidden transition-all duration-500
+  hover:-translate-y-2 hover:shadow-2xl"
+                >
+                  {/* ambient glow background */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500">
+                    <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-sky-400/20 blur-3xl" />
+                    <div className="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-violet-400/20 blur-3xl" />
+                  </div>
+
+                  {/* CONTENT */}
+                  <div className="relative z-10">
+                    <h4 className="font-bold text-sky-600 text-base group-hover:text-sky-500 transition">
+                      {week.date}
+                    </h4>
+
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {week.images?.length || 0} photos available
+                    </p>
+
+                    {/* PREVIEW STACK */}
+                    <div className="flex gap-2 mt-4">
+                      {week.images?.slice(0, 3).map((img, idx) => (
+                        <img
+                          key={idx}
+                          src={img}
+                          className="w-14 h-14 object-cover rounded-xl border
+          transition duration-300
+          group-hover:scale-110 group-hover:rotate-1"
+                        />
+                      ))}
+                    </div>
+
+                    {/* CTA AREA */}
+                    <div className="mt-5 flex items-center justify-between">
+                      <span className="text-[11px] text-muted-foreground">
+                        Hover to preview
+                      </span>
+
+                      <div
+                        className="flex items-center gap-2 text-sky-600 text-xs font-semibold
+      opacity-0 group-hover:opacity-100 transition"
+                      >
+                        <span className="animate-pulse">👁</span>
+                        View Documentation
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* HOVER LAYER */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                    <div className="absolute inset-0 bg-black/5 backdrop-blur-[2px]" />
+
+                    <div className="relative flex flex-col items-center gap-2">
+                      <div className="text-3xl animate-bounce">📁</div>
+
+                      <span
+                        className="px-4 py-1 rounded-full text-xs font-semibold
+      bg-sky-500 text-white shadow-lg
+      animate-pulse"
+                      >
+                        Click to Open
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </FadeInSection>
+
+          {selectedWeek && (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm"
+              onClick={() => setSelectedWeek(null)}
+            >
+              <div
+                className="flex max-h-[92vh] w-full max-w-7xl flex-col overflow-hidden rounded-3xl border bg-background shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* HEADER */}
+                <div className="shrink-0 border-b bg-gradient-to-r from-sky-500/10 via-background to-violet-500/10 px-6 py-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="text-lg font-bold text-sky-600">
+                        {selectedWeek.date}
+                      </h4>
+
+                      <p className="text-xs text-muted-foreground">
+                        Documentary Gallery • {selectedWeek.images?.length || 0}{" "}
+                        photos
+                      </p>
+                    </div>
+
+                    <button
+                      onClick={() => setSelectedWeek(null)}
+                      className="rounded-full bg-red-500/10 px-3 py-1 text-sm font-semibold text-red-500 transition hover:bg-red-500 hover:text-white"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+
+                {/* CONTENT (LARGE IMAGES DIRECT) */}
+                <div className="flex-1 overflow-y-auto p-6">
+                  <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2">
+                    {selectedWeek.images?.map((img, i) => (
+                      <div
+                        key={i}
+                        className="overflow-hidden rounded-2xl border bg-muted shadow-md"
+                      >
+                        <img
+                          src={img}
+                          alt={`doc-${i}`}
+                          className="h-[450px] w-full object-cover md:h-[520px]"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* FOOTER */}
+                <div className="shrink-0 border-t bg-muted/30 px-6 py-3 text-xs text-muted-foreground">
+                  💡 Scroll to view all images • No click needed • Full preview
+                  mode
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </FadeInSection>
       <FadeInSection delay={0.2}>
         <section className="space-y-6">
           {/* HEADER */}
